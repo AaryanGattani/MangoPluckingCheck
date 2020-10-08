@@ -2,12 +2,11 @@ class launcher{
     constructor(bodyA, bodyB){
         var options = {
             bodyA: bodyA,
-            bodyB: bodyB,
-            stiffness: 0.04,
+            point: bodyB,
+            stiffness: 0.004,
             length: 10
         }
-        this.bodyB = bodyB;
-        this.bodyA = bodyA;
+        this.bodyB = bodyB
         this.launcher = Matter.Constraint.create(options);
         World.add(world, this.launcher);
     }
@@ -17,9 +16,9 @@ class launcher{
     }
 
     display(){
-        if(this.sling.bodyA){
-            var pointA = this.bodyA.position;
-            var pointB = this.bodyB.position;
+        if(this.launcher.bodyA){
+            var pointA = this.launcher.bodyA.position;
+            var pointB = this.launcher.bodyB.position;
             strokeWeight(4);
             line(pointA.x, pointA.y, pointB.x, pointB.y);
         }

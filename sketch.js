@@ -30,7 +30,7 @@ function setup() {
 	mango6 = new MANGO(800,370,50,50);
 	mango7 = new MANGO(970,240,50,50);
 
-	l = new launcher(stone,boy);
+	l = new launcher(boy.body,stone.body);
 
 
 	Engine.run(engine);
@@ -44,7 +44,6 @@ function draw() {
  
   tree.display();
   boy.display();
-  stone.display();  
   mango1.display();
   mango2.display();
   mango3.display();
@@ -52,6 +51,7 @@ function draw() {
   mango5.display();
   mango6.display();
   mango7.display();
+  stone.display();  
 
  l.display();
   
@@ -66,7 +66,7 @@ function draw() {
   drawSprites();
 }
 
-function detectCollision(lmango,lstone)
+function detectCollision(lstone,lmango)
 {
 	mangoBodyposition = lmango.body.position
 	stoneBodyposition = lstone.body.position
@@ -81,12 +81,13 @@ function detectCollision(lmango,lstone)
 }
 
 function mouseDragged(){
-    Matter.Body.setPosition(stone.body, {x: mouseX , y: mouseY});
+  Matter.Body.setPosition(stone.body, {x: mouseX , y: mouseY});
 }
 
-function mouseReleased()
-{
-	l.fly();
+
+
+function mouseReleased(){
+  l.fly();
 }
 
 function keyPressed()
